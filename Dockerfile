@@ -20,9 +20,12 @@ RUN composer install \
     --no-interaction \
     --prefer-dist \
     --optimize-autoloader \
-    --no-dev
+    --no-dev \
+    --no-scripts
 
 COPY . .
+
+RUN composer dump-autoload --optimize --no-dev && php artisan package:discover --ansi
 
 RUN npm install
 RUN npm run build
