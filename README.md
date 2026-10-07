@@ -1,58 +1,134 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Employee Management Portal
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## PHP System Test
+This project was developed and submitted as part of a PHP/Laravel technical system test. It demonstrates proficiency in building modern web applications, handling file uploads, implementing data validation, and integrating third-party packages for specialized tasks.
 
-## About Laravel
+## Project Overview
+The Employee Management Portal is a comprehensive Laravel-based web application designed for HR administrators to manage employee records. The system provides a clean, user-friendly interface to perform full CRUD (Create, Read, Update, Delete) operations on employee data, manage document attachments (photos and resumes), and bulk import/export data using Excel files.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Technology Stack
+The application is built using the following technologies:
+- **Framework:** Laravel 11.x
+- **Language:** PHP 8.3
+- **Database:** MySQL
+- **Frontend:** HTML5, CSS3, Bootstrap 5
+- **Excel Processing:** Maatwebsite/Laravel-Excel
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Completed Requirements
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| Requirement | Status |
+|-------------|--------|
+| Employee List | ✅ Completed |
+| Add Employee | ✅ Completed |
+| Edit Employee | ✅ Completed |
+| View Employee | ✅ Completed |
+| Delete Employee | ✅ Completed |
+| Employee ID | ✅ Completed |
+| Employee personal details | ✅ Completed |
+| Photo upload | ✅ Completed |
+| Resume upload | ✅ Completed |
+| Search | ✅ Completed |
+| Filtering | ✅ Completed |
+| Sorting | ✅ Completed |
+| Pagination | ✅ Completed |
+| Excel Export | ✅ Completed |
+| Excel Import | ✅ Completed |
+| Clean UI | ✅ Completed |
 
-## Learning Laravel
+## Employee Fields
+The application captures and manages the following data fields for each employee:
+- `employee_id` (Unique identifier)
+- `firstname`
+- `lastname`
+- `date_of_birth`
+- `education_qualification`
+- `address`
+- `email` (Unique)
+- `phone`
+- `photo` (Image file)
+- `resume` (PDF/Word document)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Features
+- **CRUD Operations:** Administrators can seamlessly create new employees, view detailed profiles, update information, and delete records.
+- **Search:** A dynamic search bar allows searching for employees by ID, name, email, or phone number.
+- **Filter:** Users can filter the employee roster based on their Education Qualification.
+- **Sort:** The employee table can be sorted dynamically by Employee ID, Name, Email, or Date Added in Ascending (ASC) or Descending (DESC) order.
+- **Pagination:** The employee list is paginated (10 records per page) to ensure fast load times and clean UI navigation.
+- **Photo/Resume Upload:** Supports uploading profile photos and document resumes, including the ability to selectively remove existing files during the editing process.
+- **Excel Export:** Generates and downloads a complete `.xlsx` roster of all employees currently in the system.
+- **Excel Import:** Allows bulk creation and updating of employees via Excel upload. It includes robust handling using `updateOrCreate` to prevent duplicate `employee_id` entries.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Database
+The application relies on a **MySQL** database. The employee data structure is defined by Laravel migrations, ensuring strict schema enforcement. 
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+The `employees` table includes standard data columns alongside constraints to maintain data integrity (e.g., unique constraints on `employee_id` and `email`).
 
-## Agentic Development
+## Installation
+To run this project locally, follow these steps:
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd employee-management-portal
+   ```
 
-```bash
-composer require laravel/boost --dev
+2. **Install Composer dependencies:**
+   ```bash
+   composer install
+   ```
 
-php artisan boost:install
-```
+3. **Configure Environment:**
+   ```bash
+   cp .env.example .env
+   ```
+   *Open `.env` and configure your `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` for MySQL.*
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+4. **Generate Application Key:**
+   ```bash
+   php artisan key:generate
+   ```
 
-## Contributing
+5. **Run Migrations:**
+   ```bash
+   php artisan migrate
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. **Create Storage Link (Required for file uploads):**
+   ```bash
+   php artisan storage:link
+   ```
 
-## Code of Conduct
+7. **Start the Development Server:**
+   ```bash
+   php artisan serve
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Excel Import / Export
+Excel functionality is powered by the `maatwebsite/excel` package. 
+- **Exporting:** Uses the `FromCollection`, `WithHeadings`, and `WithMapping` concerns to generate a cleanly formatted spreadsheet of all employees.
+- **Importing:** Uses the `ToModel` and `WithHeadingRow` concerns. The importer automatically detects column headers, formats Excel-specific date formats into standard database dates, and gracefully handles duplicate entries or empty rows.
 
-## Security Vulnerabilities
+## File Uploads
+Files are handled using Laravel's local `public` storage disk. 
+- **Photos:** Validated to accept only standard image formats (`jpeg`, `png`, `jpg`) up to 2MB. They are stored in `storage/app/public/employees/photos`.
+- **Resumes:** Validated to accept document formats (`pdf`, `doc`, `docx`) up to 2MB. They are stored in `storage/app/public/employees/resumes`.
+- When an employee is updated or deleted, the system automatically checks for existing files and deletes them from the server to prevent orphaned files and save disk space.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Deployment
+This application has been containerized using Docker and is actively deployed on **Railway**.
 
-## License
+**Live URL:** https://employee-management-portal-production.up.railway.app
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Test Submission Details
+- **Output URL:** https://employee-management-portal-production.up.railway.app
+- **Username:** Not applicable / Not provided
+- **Password:** Not applicable / Not provided
+- **Framework:** Laravel 11
+- **Database:** MySQL
+- **Source Code:** GitHub repository
+
+## Task Duration
+As per the technical test requirement.
+
+## Notes
+This README explicitly documents the implementation submitted for the PHP System Test. No boilerplate documentation is included.
